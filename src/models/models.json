@@ -1,0 +1,77 @@
+[
+    {
+        "_id": "679c23182b552b2b2b2b2b2b",
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "password": "<hashed_password>",
+        "role": "customer",
+        "addresses": [
+            {
+                "id": "679c23182b552b2b2b2b2b2b",
+                "label": "Home",
+                "street": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "country": "USA",
+                "postalCode": "12345",
+                "isDefault": true
+            }
+        ],
+        "createdAt": "2026-07-31T00:00:00.000Z",
+        "updatedAt": "2026-07-31T00:00:00.000Z"
+    },
+    {
+        "_id": "679c23182b552b2b2b2b2b2b",
+        "orderId": "1234567890",
+        "userId": "679c23182b552b2b2b2b2b2b",
+        "products": [
+            {
+                "productId": "679c23182b552b2b2b2b2b2b",
+                "quantity": 1,
+                "priceatpurchase": 100
+            },
+            {
+                "productId": "679c23182b552b2b2b2b2b2b",
+                "quantity": 2,
+                "priceatpurchase": 200
+            }
+        ],
+        "totalamountatpurchase": 500,
+        "paymentMethod": "credit_card",
+        "paymentstatus": "pending",
+        "createdat": "2026-07-31T00:00:00.000Z",
+        "updatedat": "2026-07-31T00:00:00.000Z"
+    },
+    {
+        "_id": "679c23182b552b2b2b2b2b2b",
+        "name": "Product 1",
+        "slug": "product-1",
+        "description": "Product 1 description",
+        "price": 100,
+        "discount": 10,
+        "category": "reference",
+        "brand": "Brand 1",
+        "images": [
+            "product1.jpg",
+            "product2.jpg",
+            "product3.jpg"
+        ],
+        "stock": 1,
+        "tags": [
+            "tag1",
+            "tag2",
+            "tag3"
+        ],
+        "rating": 4.5,
+        "isFeatured": true,
+        "status": "active"
+    },
+    {
+        "_id": "679c23182b552b2b2b2b2b2b",
+        "name": "category 1",
+        "slug": "category-1",
+        "description": "Category 1 description",
+        "image": "category1.jpg",
+        "isActive": true
+    }
+]
