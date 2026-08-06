@@ -3,6 +3,7 @@ import { successResponse } from "../utils/response.js";
 import * as productService from "../services/product.service.js";
 import { AppError } from "../middleware/appError.js";
 import uploadImages from "../config/cloudinary.js";
+import type { GetProductsQuery } from "../types/product.types.js";
 
 export const createProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -37,42 +38,9 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { page, limit, sort, order, search, description, category, brand, stock, discount, tags, rating, isFeatured, status } = req.query;
-        let limitNumber = limit ? parseInt(limit as string) : 10;
-        let pageNumber = page ? parseInt(page as string) : 1;
-        let sortBy = sort ? sort as string : "createdAt";
-        let orderBy = order ? order as string : "desc";
-
-        const query: Record<string, unknown> = {};
-
-        if (search) {
-            query.$or =[
-                { name: { $regex: search as string, $options: "i" } },
-                { slug: { $regex: search as string, $options: "i" } },
-                { description: { $regex: search as string, $options: "i" } },
-                { brand: { $regex: search as string, $options: "i" } },
-                // { stock: { $regex: search as string, $options: "i" } },
-                // { discount: { $regex: search as string, $options: "i" } },
-                // { tags: { $regex: search as string, $options: "i" } },
-                // { rating: { $regex: search as string, $options: "i" } },
-                // { isFeatured: { $regex: search as string, $options: "i" } },
-                { status: { $regex: search as string, $options: "i" } },
-            ]
-        }
-        
-        if (category) query.category = category;
-        
-        if (stock) query.stock = Number(stock);
-        if (discount) query.discount = Number(discount);
-        if (tags) query.tags = tags;
-        // if (rating) query.rating = Number(rating);
-        if (isFeatured !== undefined) query.isFeatured = isFeatured;
-        // if (status) query.status = status;
-
-        const products = await productService.getProducts({ query, limitNumber, pageNumber, sortBy, orderBy });
-
+        const query = (req as Request & { validatedQuery: GetProductsQuery }).validatedQuery;
+        const products = await productService.getProducts(query);
         res.status(200).json(successResponse(200, "Products fetched successfully", products));
-    
     } catch (error) {
         next(error);
     }

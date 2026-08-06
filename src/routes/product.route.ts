@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import * as productController from "../controllers/product.controller.js";
-import { validateCreateProduct } from "../validators/product.validator.js";
+import { validateCreateProduct, validateGetProducts } from "../validators/product.validator.js";
 import { verifyToken, authorize } from "../middleware/auth.js";
 import multer from "multer";
 
@@ -15,7 +15,7 @@ router.patch("/:id", verifyToken, authorize("admin"), upload.array("images", 5),
 router.delete("/:id", verifyToken, authorize("admin"), productController.deleteProduct);
 
 // Customer api routes
-router.get("/", productController.getProducts);
+router.get("/", validateGetProducts, productController.getProducts);
 router.get("/:slug", productController.getProductBySlug);
 
 export default router;
