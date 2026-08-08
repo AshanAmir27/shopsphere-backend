@@ -9,11 +9,18 @@ import productRoutes from './routes/product.route.js';
 import categoryRoutes from './routes/category.route.js';
 import orderRoutes from './routes/orders.route.js';
 
-// cors must run before routes (and before credentialed requests fail preflight)
-app.use(cors({
-    origin: process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000',
-    credentials: true,
-}));
+const frontendUrl = (process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000").replace(
+    /\/$/,
+    ""
+  );
+  
+  app.use(
+    cors({
+      origin: frontendUrl,
+      credentials: true,
+    })
+  )
+
 
 // middlewares
 app.use(express.json());
