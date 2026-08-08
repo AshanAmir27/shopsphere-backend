@@ -7,6 +7,7 @@ const app = express();
 import userRoutes from './routes/user.routes.js';
 import productRoutes from './routes/product.route.js';
 import categoryRoutes from './routes/category.route.js';
+import orderRoutes from './routes/orders.route.js';
 
 // cors must run before routes (and before credentialed requests fail preflight)
 app.use(cors({
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/orders', orderRoutes);
 
 // health check
 app.get('/api/v1/health', (req, res) => {

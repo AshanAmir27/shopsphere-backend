@@ -27,7 +27,7 @@ const orderSchema = new mongoose.Schema({
             },
             images: [
                 {
-                    type: String, 
+                    type: String,
                     required: true,
                 }
             ]
@@ -48,12 +48,12 @@ const orderSchema = new mongoose.Schema({
     },
     paymentStatus: {
         type: String,
-        enum: ["pending","processing", "paid", "failed", "refunded"],
+        enum: ["pending", "processing", "paid", "failed", "refunded"],
         default: "pending",
     },
     orderStatus: {
         type: String,
-        enum: ["pending","processing", "shipped", "delivered", "cancelled"],
+        enum: ["pending", "processing", "shipped", "delivered", "cancelled"],
         default: "pending",
     },
 },

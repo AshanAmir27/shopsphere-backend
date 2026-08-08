@@ -18,6 +18,9 @@ export interface IUser {
     authProvider?: "local" | "google";
     role?: string;
     addresses?: iAddresses[];
+    isEmailVerified?: boolean;
+    emailVerificationToken?: string;
+    emailVerificationTokenExpiresAt?: Date;
     createdAt?: Date;
     updatedAt?: Date;
   }
