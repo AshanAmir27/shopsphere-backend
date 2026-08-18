@@ -5,7 +5,7 @@ import { successResponse } from "../utils/response.js";
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "none" as const,
+  sameSite: "lax" as const,
   path: "/",
 };
 
